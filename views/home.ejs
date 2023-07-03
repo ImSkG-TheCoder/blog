@@ -1,0 +1,33 @@
+<%- include("partials/header"); -%>
+
+<h1>Home</h1>
+<p> <%= startingContent %> </p>
+<form action="/compose" method="get">
+  <button type="submit" class="btn btn-primary">Add Post</button>
+</form>
+
+
+<%  data.forEach(function(post){ %>
+
+<h1><%=post.postTitle%></h1>
+<p> 
+  <%= post.blogPost.substring(0,100)+" ..." %>
+  <a href="/posts/<%=post.postTitle%>">Read More</a>
+</p>
+<h2>Summary</h2>
+<p><%= post.summary.substring(0,10)+" ..." %>
+<a href="/posts/summary/<%=post.postTitle%>">Read More</a>
+</p>
+<form action="/delete" method="post">
+  <button  onclick="myFunction()" type="submit" name="deleteButton" class="btn btn-primary" value="<%=post.postTitle%>">delete</button>
+</form>
+<script>
+  function myFunction() {
+    alert("It will be deleted.");
+  }
+</script>
+
+<% }) %>
+
+
+<%- include("partials/footer"); -%>
